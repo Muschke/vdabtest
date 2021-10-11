@@ -1,0 +1,32 @@
+header {
+    background-image: url("../images/frituurBanner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+body {
+    background-color: azure;
+}
+
+h1 {
+    font-family: Architects Daughter;
+    color: azure;
+    font-size: 58px;
+    padding-top: 100px;
+}
+
+h2 {
+    font-family: "Architects Daughter";
+    color: black;
+    font-size: 30px;
+    text-align: center;
+}
+h3 {
+    font-family: "Architects Daughter";
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}

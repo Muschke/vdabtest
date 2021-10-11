@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frituur Frida</title>
+    <link rel="icon" href="images/frietIcoon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/frituurFrida.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <h1>Frietjes Frida à la plancha</h1>
+    <h2><span th:text="${dagVdWeek}"></span></h2>
+    <h3>Rij nu naar de <span th:text="${locatie.straat}"></span> <span th:text="${locatie.nummer}"></span> in  <span th:text="|${locatie.gemeente.gemeente}(${locatie.gemeente.postcode})|"></span></h3>
+</header>
+<div>
+    <h2>Onze sauzen</h2>
+    <ul>
+        <li th:each="saus : ${sauzen}" th:object="${saus}">
+            <span th:text="*{naam}"></span>
+            <ul>
+                <li th:each="ingredient : *{ingredienten}"
+                    th:text="${ingredient}"></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
