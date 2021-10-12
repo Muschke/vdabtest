@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Frituur Frida</title>
-    <link rel="icon" th:href="@{images/frietIcoon.jpg}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{css/frituurFrida.css}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-</head>
+<head th:replace="fragments::head(title='Frituur Frida')"></head>
 <body>
 <header th:replace="fragments::banner"></header>
 <nav th:replace="fragments::menu"></nav>

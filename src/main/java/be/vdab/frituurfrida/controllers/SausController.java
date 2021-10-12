@@ -5,10 +5,12 @@ import be.vdab.frituurfrida.domain.Gemeente;
 import be.vdab.frituurfrida.domain.Saus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("sauzen")
@@ -25,6 +27,13 @@ class SausController {
         var modelAndView =  new ModelAndView("sauzen", "dagVdWeek", maandagOfAndereDag);
         modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         modelAndView.addObject("sauzen", sauzen);
+        return modelAndView;
+    }
+
+    @GetMapping("{id}")
+    public ModelAndView saus(@PathVariable long id) {
+        var modelAndView = new ModelAndView("saus");
+        Arrays.stream(sauzen).filter(saus -> saus.getId() == id).findFirst().ifPresent(saus -> modelAndView.addObject(saus));
         return modelAndView;
     }
 }

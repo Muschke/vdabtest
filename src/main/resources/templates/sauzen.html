@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Frituur Frida Sauzen</title>
-    <link rel="icon" th:href="@{images/frietIcoon.jpg}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{css/frituurFrida.css}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-</head>
+<head th:replace="fragments::head(title='Sauzen')"></head>
 <body>
 <header th:replace="fragments::banner"></header>
 <nav th:replace="fragments::menu"></nav>
@@ -16,7 +8,7 @@
     <h2>Onze sauzen</h2>
     <ul>
         <li th:each="saus : ${sauzen}" th:object="${saus}">
-            <span th:text="*{naam}"></span>
+            <a th:text="*{naam}" th:href="@{/sauzen/{id} (id=*{id})}"></a>
             <ul>
                 <li th:each="ingredient : *{ingredienten}"
                     th:text="${ingredient}"></li>
