@@ -3,30 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Frituur Frida</title>
-    <link rel="icon" href="images/frietIcoon.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="css/frituurFrida.css">
+    <link rel="icon" th:href="@{images/frietIcoon.jpg}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{css/frituurFrida.css}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>Frietjes Frida à la plancha</h1>
-    <h2><span th:text="${dagVdWeek}"></span></h2>
-    <h3>Rij nu naar de <span th:text="${locatie.straat}"></span> <span th:text="${locatie.nummer}"></span> in  <span th:text="|${locatie.gemeente.gemeente}(${locatie.gemeente.postcode})|"></span></h3>
-</header>
-<div>
-    <h2>Onze sauzen</h2>
-    <ul>
-        <li th:each="saus : ${sauzen}" th:object="${saus}">
-            <span th:text="*{naam}"></span>
-            <ul>
-                <li th:each="ingredient : *{ingredienten}"
-                    th:text="${ingredient}"></li>
-            </ul>
-        </li>
-    </ul>
-</div>
+<header th:replace="fragments::banner"></header>
+<nav th:replace="fragments::menu"></nav>
+<div id="indexpagina">
+<h3>Welkom beste frietliefhebber</h3>
+<h3>Dit is waarom in Vlaanderen de beste friet wordt gebakken (en zo doe je dat thuis!)</h3>
+<h4>Vlaanderen = friet</h4>
+    <p>Hier in Nederland kun je echt wel een lekker frietje halen. Maar wil je de crème de la crème op het gebied van friet proeven,
+        dan moet je naar Vlaanderen. Hier wordt haute frituur bedreven. Wij vertellen je waarom en leren je hoe je thuis friet op z’n Belgisch bakt.
+        Een puntzak met warme, goudgele friet en een klodder lobbige mayonaise: bestaat er een groter geluk? Ondanks zijn bescheiden voorkomen
+        (en dito prijskaartje) is genieten van een frietje een grote luxe. Helemaal als je bedenkt hoeveel vakmanschap er komt kijken bij het berei den
+        van écht goede frites. We weten allemaal dat je voor de allerbeste frites naar Vlaanderen moet. Want België is frietland nummer één.
+        In 2016 telde het land maar liefst 4 643 frietkramen – of frietkoten, zoals we eigenlijk moeten zeggen. Voor de lekkerste friet ter wereld,
+        hoef je alleen maar even de grens over te steken naar steden als Antwerpen, Gent en Brugge.
 
+   <h4> Friet = Vlaamse kunst </h4>
+    <p>De Belgen beschouwen frieten dan ook niet zozeer als fastfood – iets wat je gedachteloos weg hapt op straat – het is bijna een kunstvorm. Vlaamse vakjury’s struinen regelmatig heel Vlaanderen af, op zoek naar de beste patat frites. En wanneer Vlamingen ‘onze’ friet proeven, die dikwijls wordt gepromoot als ‘echte Vlaamse frites’, zijn ze uitermate kritisch.
+        Te droog, te hard, te flauw, geen goede aardappelsmaak, te kort gebakken of in het verkeerde vet… er zijn héél veel factoren die maken dat het ene frietje het andere niet is.
+        En dan hebben we ook nog de mayonaise: die is vaak dan weer niet zuur genoeg, want juist dat zure van Vlaamse mayonaise gaat zo goed samen met vettige frites. Iets dat zó simpel is, heeft ook niets om zich achter te verschuilen. En tja, de frieten zoals ze in Vlaanderen worden gebakken, zijn nou eenmaal het absolute ijkpunt.
+        Een Hollander die de beste friet van Vlaanderen bakt Iemand die daar alles van weet, is Leonard Glazema. Deze Nederlander (!) gooit in Vlaanderen hoge ogen met zijn frietkoten, bij de artisanale frituur Frieterij. Zijn Frieterij heeft inmiddels drie vestingen: in Antwerpen, Berchem en Borgerhout. Zijn friet is regelmatig uitgeroepen tot de beste friet van Antwerpen.
+        De frites van Frieterij zijn “vers gesneden naar grootmoeders recept”. En vooral dat vers gesneden blijkt een belangrijke factor die maakt dat Vlaamse frites vaak zoveel lekkerder zijn dan Nederlandse. Leonard: “Over het algemeen wordt er in de Nederlandse frituur veel gewerkt met diepgevroren frietjes. In België bakt bijna iedereen verse frites. Hier heb je kleine fabriekjes die de frietjes elke drie dagen vers aanleveren.”
+        Frites bakken Ambacht en aandacht Bij Frieterij hebben ze dat niet eens nodig, daar snijden ze de frieten zelf. Daarna worden ze gelijk voorgebakken, zodat de aardappels niet verkleuren. Daardoor hoeven ze ook geen additieven toe te voegen om verkleuring tegen te gaan – zoals wel vaak gebeurt bij fabrikanten.
+        Ook het proces van friet bakken – van het voorbakken tot het afbakken – is een heel precies iets, wat je goed onder de knie moet hebben. Elke aardappelsoort reageert weer anders en als de frites niet goed genoeg zijn afgekoeld en er nog teveel vocht in zit, kan dat de smaak beïnvloeden. Leonard wisselt zelfs regelmatig van aardappelsoort, omdat de kwaliteit per aardappel verschilt per seizoen.
+        Friet bakken is serious business dus, maar dat moet ook wel in een land met zo’n duidelijke frietcultuur. Leonard: “Het is een heel emotioneel iets, België en frieten. Op vrijdagavond en zondag is het frietdag, lijkt wel. Dan is het bij ons altijd druk. En niet alleen om één frietje te halen, maar voor de hele familie, inclusief snacks. Belgen willen echt wel betalen voor een frietje van goede kwaliteit. Ze herkennen de kwaliteit en vinden het dat waard.”
+        Zo bak je thuis de beste Vlaamse frites Wil je thuis ook de beste friet bakken, à la Belge? Met deze tips van Leonard zit je gebakken:
+        Snijd je frieten op een centimeter dik (Leonard: “Ik denk dat dit de beste dikte is. 12 mm wordt al te dik”). Neem daarvoor niet het allerscherpste mes, want je wil dat de rand van het gesneden vlak wat ruw is. Blancheer de frieten ongeveer 1 tot 1,5e minuut in kokend water. Dan gaan de poriën open van de buitenkant van de aardappel. Leg de frietjes voor 15 minuten in de vriezer, zodat de warmte en het vocht worden onttrokken (het is belangrijk dat je droge frietjes hebt, zonder condens).
+        Haal de frites uit de vriezer en bak ze voor in hete olie: ongeveer 6 minuten op 140 graden. Maar de baktijd is afhankelijk van hoeveel je per keer in het mandje doet. Bak niet teveel tegelijk, dan koelt de olie teveel af. Spreid de frietjes na het bakken uit op een plaat met keukenpapier, zodat ze kunnen uitlekken. Dep ze droog, zodat het vet geabsorbeerd wordt.
+        Zet ze weer 15 minuten in de vriezer. Bak de frietjes af op 170 graden – veel hoger moet je niet gaan. Hoe lang, hangt weer af van hoeveel je er tegelijk bakt. Blijf erbij en check hoe ze bakken. Een goede graadmeter om te checken of je frites gaar zijn? Leonard: “Als je ze bakt, komt er veel water vrij. Als dat water niet meer troebel is, ontsnapt er lucht. Als de bubbeltjes helderder en groter worden, betekent dat dat de lucht vrijkomt. Prik met een vork in de zijkant van de frietjes om te testen of ze krokant zijn.”
+        Bestrooi de frietjes met fleur de sel. Volgens Leonard het allerbeste zout, want het smelt op je tong.</p>
+</div>
 </body>
 </html>

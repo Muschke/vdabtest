@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fragments</title>
+</head>
+<body>
+<!--navigation menu-->
+<div xmlns:th="http://www.thymeleaf.org">
+    <nav th:fragment="menu" id="menu">
+        <ul>
+            <li th:href="@{/}"><a>Welkom</a></li>
+            <li th:href="@{/sauzen}"><a>Sauzen</a></li>
+        </ul>
+    </nav>
+<!--banner-->
+<header th:fragment="banner">
+    <h1>Frietjes Frida à la plancha</h1>
+    <h2><span th:text="${dagVdWeek}"></span></h2>
+    <h3>Rij nu naar de <span th:text="${locatie.straat}"></span> <span th:text="${locatie.nummer}"></span> in  <span th:text="|${locatie.gemeente.gemeente}(${locatie.gemeente.postcode})|"></span></h3>
+</header>
+</div>
+</body>
+</html>

@@ -30,3 +30,37 @@ h3 {
     font-size: 20px;
     text-align: center;
 }
+
+
+/*menu*/
+#menu ul {
+    background-color: darkcyan;
+    text-align: center;
+}
+
+#menu li {
+    display: inline;
+    font-family: "Architects Daughter";
+    font-size: 20px;
+}
+
+#menu li a {
+    color: whitesmoke;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-left: 2em;
+}
+
+#menu li a:hover {
+    color: yellow;
+}
+
+/*welkomspagina*/
+#indexpagina {
+    margin: 10%;
+    text-align: center;
+}
+
+p #indexpagina {
+    text-align: center;
+}
