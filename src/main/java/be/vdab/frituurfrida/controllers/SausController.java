@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -23,7 +24,7 @@ class SausController {
             new Saus(5, "vinaigrette", new String[] {"ciderazijn", "graanmosterd", "olijfolie"})};
     @GetMapping
     public ModelAndView sauzen() {
-        var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals("1") ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
+        var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals(DayOfWeek.MONDAY) ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
         var modelAndView =  new ModelAndView("sauzen", "dagVdWeek", maandagOfAndereDag);
         modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         modelAndView.addObject("sauzen", sauzen);
@@ -32,7 +33,9 @@ class SausController {
 
     @GetMapping("{id}")
     public ModelAndView saus(@PathVariable long id) {
-        var modelAndView = new ModelAndView("saus");
+        var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals(DayOfWeek.MONDAY) ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
+        var modelAndView =  new ModelAndView("saus", "dagVdWeek", maandagOfAndereDag);
+        modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         Arrays.stream(sauzen).filter(saus -> saus.getId() == id).findFirst().ifPresent(saus -> modelAndView.addObject(saus));
         return modelAndView;
     }

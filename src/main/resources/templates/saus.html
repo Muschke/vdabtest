@@ -2,10 +2,8 @@
 <html lang="nl" xmlns:th="http://thymeleaf.org">
 <head th:replace="fragments::head(title = ${saus} == null ? 'Saus wordt voorlopig nog niet aangeboden' : ${saus.naam})"></head>
 <body>
-
+<header th:replace="fragments::banner"></header>
 <nav th:replace="fragments::menu"></nav>
-
-<!-- <header th:replace="fragments::banner"></header> -->
 
 <div th:if="not ${saus}" class="fout">Saus wordt voorlopig nog niet aangeboden:
     <th:block th:text="${id}"></th:block>

@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<!--header-->
+<head th:fragment="head(title)">
     <meta charset="UTF-8">
-    <title>fragments</title>
+    <title th:text="${title}"></title>
+    <link rel="icon" th:href="@{/images/frietIcoon.jpg}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{/css/frituurFrida.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
 </head>
 <body>
 <!--navigation menu-->
@@ -19,16 +25,7 @@
     <h2><span th:text="${dagVdWeek}"></span></h2>
     <h3>Rij nu naar de <span th:text="${locatie.straat}"></span> <span th:text="${locatie.nummer}"></span> in  <span th:text="|${locatie.gemeente.gemeente}(${locatie.gemeente.postcode})|"></span></h3>
 </header>
-    <!--header-->
-    <head th:fragment="head(title)">
-        <meta charset="UTF-8">
-        <title th:text="${title}"></title>
-        <link rel="icon" th:href="@{images/frietIcoon.jpg}" type="image/x-icon">
-        <link rel="stylesheet" th:href="@{css/frituurFrida.css}">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
-    </head>
+
 </div>
 </body>
 </html>
