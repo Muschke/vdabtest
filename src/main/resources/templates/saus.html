@@ -4,22 +4,22 @@
 <body>
 
 <nav th:replace="fragments::menu"></nav>
-   <!-- <header th:replace="fragments::banner"></header> -->
+
+<!-- <header th:replace="fragments::banner"></header> -->
+
 <div th:if="not ${saus}" class="fout">Saus wordt voorlopig nog niet aangeboden:
     <th:block th:text="${id}"></th:block>
 </div>
 <th:block th:if="${saus}" th:object="${saus}">
     <h1 th:text="*{naam}"></h1>
-
-    <dt>Nummer</dt>
-    <dd th:text="*{id}"></dd>
-    <dt>Ingredienten</dt>
-    <dd>
-    <ul>
-        <li th:each="ingredient : *{ingredienten}" th:text="${ingredient}"></li>
-    </ul>
-    </dd>
-
+        <dt>Nummer</dt>
+        <dd th:text="*{id}"></dd>
+        <dt>Ingredienten</dt>
+        <dd>
+            <ul>
+                <li th:each="ingredient : *{ingredienten}" th:text="${ingredient}"></li>
+            </ul>
+        </dd>
 </th:block>
 </body>
 </html>
