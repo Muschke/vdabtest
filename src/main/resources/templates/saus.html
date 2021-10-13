@@ -10,6 +10,8 @@
 </div>
 <th:block th:if="${saus}" th:object="${saus}">
     <h1 th:text="*{naam}"></h1>
+
+    <dl>
         <dt>Nummer</dt>
         <dd th:text="*{id}"></dd>
         <dt>Ingredienten</dt>
@@ -18,6 +20,10 @@
                 <li th:each="ingredient : *{ingredienten}" th:text="${ingredient}"></li>
             </ul>
         </dd>
+
+    </dl>
+    <img th:src="@{/images/{naam}.png(naam=*{naam})}" th:alt="*{naam}">
+
 </th:block>
 </body>
 </html>
