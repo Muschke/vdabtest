@@ -30,7 +30,26 @@ h3 {
     font-size: 20px;
     text-align: center;
 }
-
+/*pagina met alfabet*/
+.lijstAlfabet, .lijstAlfabetSaus{
+    text-align: center;
+}
+.lijstAlfabet li{
+    display: inline-flex;
+    font-family: "Architects Daughter";
+    font-size: 25px;
+    padding-left: 10px;
+    text-transform: uppercase;
+}
+.lijstAlfabet li a {
+    text-decoration: none;
+}
+.lijstAlfabetSaus li{
+    font-family: "Architects Daughter";
+    font-size: 25px;
+    list-style-type: none;
+    text-transform: capitalize;
+}
 
 /*menu*/
 #menu ul {
