@@ -2,6 +2,7 @@ package be.vdab.frituurfrida.services;
 
 import be.vdab.frituurfrida.domain.Saus;
 import be.vdab.frituurfrida.repositories.SausRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ class DefaultSausService implements SausService{
     /*We moeten de CSVSausRepository injecteren, dit doen we door variabele te maken die de repository oproept*/
     private final SausRepository sausRepository;
 
-    public DefaultSausService(SausRepository sausRepository) {
+    public DefaultSausService(@Qualifier("Properties") SausRepository sausRepository) {
         this.sausRepository = sausRepository;
     }
     @Override
