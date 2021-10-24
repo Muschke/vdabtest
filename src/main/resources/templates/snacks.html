@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://thymeleaf.org">
+<head th:replace="fragments::head(title='Snacks')"></head>
+<body>
+<header th:replace="fragments::banner"></header>
+<nav th:replace="fragments::menu"></nav>
+<h1>Snacks</h1>
+<ul class="lijstAlfabet">
+    <li th:each="letter:${alfabet}">
+        <a th:href="@{/snacks/alfabet/{letter}(letter=${letter})}" th:text="${letter}"></a>
+    </li>
+</ul>
+<th:block th:if="${letter}">
+    <h2>Snacks die starten met uw gekozen letter: <th:block th:text="${letter}" class="test"></th:block></h2>
+    <ul class="lijstAlfabetSaus"><li th:each="snack:${snacks}" th:text="${snack.naam}"></li> </ul>
+</th:block>
+
+</body>
+</html>
+

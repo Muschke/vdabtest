@@ -1,8 +1,7 @@
 package be.vdab.frituurfrida.repositories;
 
-
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
+import org.junit.jupiter.api.Test;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import static org.assertj.core.api.Assertions.assertThat;
