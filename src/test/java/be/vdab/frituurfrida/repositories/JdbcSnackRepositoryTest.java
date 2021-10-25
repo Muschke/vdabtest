@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @JdbcTest
 @Import(JdbcSnackRepository.class)
-@Sql("/insertSnacks.sql")
+@Sql({"/insertSnacks.sql", "/insertdagVerkopen.sql"})
 class JdbcSnackRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
     private static final String SNACKS = "snacks";
     private final JdbcSnackRepository repository;
@@ -57,6 +57,17 @@ class JdbcSnackRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
                 .extracting(Snack::getNaam)
                 .allSatisfy(naam -> assertThat(naam.toLowerCase(Locale.ROOT)).startsWith("t"))
                 .isSortedAccordingTo(String::compareToIgnoreCase);
+    }
+    //Test op DTO methode
+    @Test
+    @DisplayName("Controleren dat DTO werkt")
+    void findTotaleVerkopenPerSnack() {
+        var totaleSalesPerSnack = repository.findTotaleVerkopenPerSnack();
+        assertThat(totaleSalesPerSnack).hasSize(super.jdbcTemplate.queryForObject(
+                "select count(distinct snackId) from dagVerkopen", Integer.class));
+        var eersteRij = totaleSalesPerSnack.get(0);
+        assertThat(eersteRij.getAantalVerkocht()).isEqualTo(super.jdbcTemplate.queryForObject(
+                "select sum(aantal) from dagVerkopen where snackId = " + eersteRij.getId(), Integer.class));
     }
     //functies om id uit tests te halen
     private long idVanTestBerepoot() {

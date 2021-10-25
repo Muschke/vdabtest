@@ -1,5 +1,6 @@
 package be.vdab.frituurfrida.repositories;
 
+import be.vdab.frituurfrida.DTO.TotaleVerkopenPerSnack;
 import be.vdab.frituurfrida.domain.Snack;
 import be.vdab.frituurfrida.exceptions.SnackNietGevondenException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -52,6 +53,19 @@ class JdbcSnackRepository implements SnackRepository {
     public List<Snack> findByBeginNaam(String beginNaam) {
         var sql = "select id, naam, prijs from snacks where naam like ? order by naam";
         return template.query(sql, snackMapper,  beginNaam + "%");
+    }
+
+    //DTO implementeren
+    @Override
+    public List<TotaleVerkopenPerSnack> findTotaleVerkopenPerSnack() {
+        var sql="select snacks.id, snacks.naam, sum(dagVerkopen.aantal) as totaalVerkocht " +
+                "from snacks " +
+                "inner join dagVerkopen on snacks.id = dagVerkopen.snackId " +
+                "group by id, naam";
+        /*Let erop om group by te gebruiken, anders word alles gewoon bij de eerste beste waarde opgeteld en heb je 1 rij*/
+        RowMapper<TotaleVerkopenPerSnack> mapper = (result, rowNum) ->
+                new TotaleVerkopenPerSnack(result.getLong("id"), result.getString("naam"), result.getInt("totaalVerkocht"));
+        return template.query(sql, mapper);
     }
 
 }

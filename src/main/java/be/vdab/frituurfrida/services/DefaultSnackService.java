@@ -1,6 +1,7 @@
 package be.vdab.frituurfrida.services;
 
 
+import be.vdab.frituurfrida.DTO.TotaleVerkopenPerSnack;
 import be.vdab.frituurfrida.domain.Snack;
 import be.vdab.frituurfrida.repositories.SnackRepository;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,12 @@ class DefaultSnackService implements  SnackService{
     @Transactional(readOnly = true)
     public List<Snack> findByBeginNaam(String beginNaam) {
         return snackRepository.findByBeginNaam(beginNaam);
+    }
+
+    //dto
+    @Override
+    @Transactional(readOnly = true)
+    public List<TotaleVerkopenPerSnack> findTotaleVerkopenPerSnack() {
+        return snackRepository.findTotaleVerkopenPerSnack();
     }
 }

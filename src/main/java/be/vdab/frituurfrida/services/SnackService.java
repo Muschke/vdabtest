@@ -1,5 +1,6 @@
 package be.vdab.frituurfrida.services;
 
+import be.vdab.frituurfrida.DTO.TotaleVerkopenPerSnack;
 import be.vdab.frituurfrida.domain.Snack;
 
 import java.util.List;
@@ -9,4 +10,6 @@ public interface SnackService {
     Optional<Snack> findById(long id);
     void update(Snack snack);
     List<Snack> findByBeginNaam(String beginNaam);
+    //dto invoegen
+    List<TotaleVerkopenPerSnack> findTotaleVerkopenPerSnack();
 }

@@ -1,0 +1,1 @@
+insert into dagVerkopen (snackId, datum, aantal) values ((select id from snacks where naam = 'testBerepoot'), curdate(), 10);

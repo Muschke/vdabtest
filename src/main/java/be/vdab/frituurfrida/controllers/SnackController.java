@@ -3,6 +3,7 @@ package be.vdab.frituurfrida.controllers;
 import be.vdab.frituurfrida.domain.Adres;
 import be.vdab.frituurfrida.domain.Gemeente;
 import be.vdab.frituurfrida.services.SnackService;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
@@ -39,6 +40,15 @@ class SnackController {
         modelAndView.addObject( "dagVdWeek", maandagOfAndereDag);
         modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         modelAndView.addObject("snacks", snackService.findByBeginNaam(String.valueOf(letter)));
+        return modelAndView;
+    }
+    //controller voor DTO
+    @GetMapping("totaalVerkoopSnack")
+    public ModelAndView totaleVerkopenPerSnack() {
+        var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals(DayOfWeek.MONDAY) ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
+        var modelAndView = new ModelAndView("totaalVerkoopSnack", "totaleVerkopenPerSnack", snackService.findTotaleVerkopenPerSnack());
+        modelAndView.addObject( "dagVdWeek", maandagOfAndereDag);
+        modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         return modelAndView;
     }
 }
