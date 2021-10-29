@@ -62,4 +62,5 @@ class SausController {
         modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         return modelAndView;
     }
+
 }

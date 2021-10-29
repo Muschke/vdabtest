@@ -1,0 +1,1 @@
+insert into gastenboek(naam ,bericht) values ('testnaam1', 'testBericht1'), ('testNaam2', 'testBericht2');

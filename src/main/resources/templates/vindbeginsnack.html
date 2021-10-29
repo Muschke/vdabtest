@@ -6,7 +6,7 @@
 <nav th:replace="fragments::menu"></nav>
 <h1>Zoek uw favoriete snack: </h1>
 <form th:object="${findByBeginNaamForm}" method="get" th:action="@{/snacks/vindbeginsnack}">
-    <label>Geef de beginletters van uw snack op: <input th:field="*{beginSnack}" placeholder="Typ hier letters" autofocus></label>
+    <label>Geef de beginletters van uw snack op: <input th:field="*{beginSnack}" placeholder="Typ hier letters" autofocus required></label>
     <button>Zoeken</button>
 </form>
 

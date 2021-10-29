@@ -21,6 +21,8 @@
             <li><a th:href="@{/snacks/alfabet}">Snacks</a></li>
             <li><a th:href="@{/snacks/totaalVerkoopSnack}">Totale verkopen</a></li>
             <li><a th:href="@{/snacks/vindbeginsnack}">Vind Snack adhv beginletters</a></li>
+            <li><a th:href="@{/frieten/zoeken}">Zoek de friet</a></li>
+            <li><a th:href="@{/gastenboek}">Gastenboek</a></li>
         </ul>
     </nav>
 <!--banner-->
@@ -38,8 +40,8 @@
     </thead>
     <tbody>
         <tr th:each="snack:${snacks}" th:object="${snack}">
-            <td th:text="*{naam}">
-            <td th:text="*{prijs}">
+            <td><a th:href="@{/snacks/{id}/wijzigen/form(id=${snack.id})}" th:text="*{naam}"></a></td>
+            <td th:text="*{prijs}"></td>
         </tr>
     </tbody>
 </table>

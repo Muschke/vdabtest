@@ -13,7 +13,8 @@
     </ul>
 <th:block th:if="${letter}">
     <h2>Sauzen die starten met uw gekozen letter: <th:block th:text="${letter}" class="test"></th:block></h2>
-    <ul class="lijstAlfabetSaus"><li th:each="saus: ${sauzen}" th:text="${saus.naam}"></li></ul>
+    <ul class="lijstAlfabetSaus">
+        <li th:each="saus: ${sauzen}" th:text="${saus.naam}"></li></ul>
 </th:block>
 </body>
 </html>

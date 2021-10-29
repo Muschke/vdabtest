@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Gastenboek')"></head>
+<body>
+<script th:src="@{/js/preventDoubleSubmit.js}" defer></script>
+<nav th:replace="fragments::menu"></nav>
+<div class="lijstReacties">
+    <h1 class="h1gastenboek">Gastenboek</h1>
+    <br>
+    <!--Als toevoegenBerichtForm niet aanwezig is .. -->
+    <a th:if="not${ToevoegenBerichtForm}" th:href="@{/gastenboek/toevoegen/form}">Toevoegen</a>
+    <!--Als toevoegenBerichtForm wel aanwezig is .. -->
+    <form th:if="${ToevoegenBerichtForm}" method="post" th:object="${ToevoegenBerichtForm}" th:action="@{/gastenboek/toevoegen}">
+        <label>Naam:<input th:field="*{naam}" type="text" required></label>
+        <label>Bericht:<input th:field="*{bericht}" type="text" required></label>
+        <input type="hidden" name="id" value="0">
+        <input type="hidden" name="datum" value="0">
+        <button>Reactie toevoegen</button>
+    </form>
+    <ul>
+        <li th:each="bericht:${gastenboek}" th:object="${bericht}">
+            <ul>
+                <li class="horizontal" th:text="*{datum}"></li>
+                <li class="horizontal" th:text="*{naam}"></li>
+                <li class="horizontal" id="message" th:text="*{bericht}"></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

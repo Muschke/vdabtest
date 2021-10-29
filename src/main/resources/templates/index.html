@@ -4,6 +4,8 @@
 <body>
 <header th:replace="fragments::banner"></header>
 <nav th:replace="fragments::menu"></nav>
+<div th:if="${param.snackNietGevonden}" class="fout">Snack
+    <th:block th:text="${param.snackNietGevonden}"></th:block> niet gevonden</div>
 <div id="indexpagina">
 <h3>Welkom beste frietliefhebber</h3>
     <h3>Je bezoekt ons voor de <th:block th:text="${aantalbezoeken}"></th:block>° keer.</h3>
