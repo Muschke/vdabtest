@@ -1,17 +1,18 @@
 package be.vdab.frituurfrida.domain;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class BerichtGastenboek {
     private final long id;
-    private final Date datum;
+    private final LocalDate datum;
     private final String naam;
     private final String bericht;
 
 
     public BerichtGastenboek(long id, Date datum, String naam, String bericht) {
         this.id = id;
-        this.datum = datum;
+        this.datum = Date.valueOf(String.valueOf(datum)).toLocalDate();
         this.naam = naam;
         this.bericht = bericht;
 
@@ -21,7 +22,7 @@ public class BerichtGastenboek {
         return id;
     }
 
-    public Date getDatum() {
+    public LocalDate getDatum() {
         return datum;
     }
 

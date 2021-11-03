@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 class JdbcGastenboekRepository implements GastenboekRepository{
@@ -27,8 +28,18 @@ class JdbcGastenboekRepository implements GastenboekRepository{
     }
 
     @Override
-    public void create(BerichtGastenboek berichtGastenboek) {
-        var sql = "insert into gastenboek(naam, bericht) values (?,?)";
-        insert.usingGeneratedKeyColumns(sql, berichtGastenboek.getNaam(), berichtGastenboek.getBericht());
+    public long create(BerichtGastenboek berichtGastenboek) {
+        return insert.executeAndReturnKey(Map.of("naam", berichtGastenboek.getNaam(),
+                "datum", berichtGastenboek.getDatum(), "bericht", berichtGastenboek.getBericht())).longValue();
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        if(ids.length != 0) {
+            var sql = "delete from gastenboek where id in (" +
+                    "?,".repeat(ids.length - 1) + "?)";
+            template.update(sql, ids);
+        }
     }
 }
+

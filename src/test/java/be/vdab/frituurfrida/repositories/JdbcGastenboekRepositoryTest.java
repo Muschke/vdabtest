@@ -36,21 +36,27 @@ class JdbcGastenboekRepositoryTest extends AbstractTransactionalJUnit4SpringCont
     @Test
     @DisplayName("methode create - automatische nummering en datestamp ok")
     void create() {
-        gastenboekRepository.create(new BerichtGastenboek(0, new Date(8/12/2021), "testnaam2", "testberichtdrie"));
+        gastenboekRepository.create(new BerichtGastenboek(0, new java.sql.Date(02-9-19998), "testnaam3", "testberichtdrie"));
         var id = jdbcTemplate.queryForObject(
-                "select id from gastenboek where naam = 'testnaam2'", Long.class);
+                "select id from gastenboek where naam = 'testnaam3'", Long.class);
         assertThat(id).isPositive();
         assertThat(countRowsInTableWhere(GASTENBOEK, "id =" + id)).isOne();
-        var datumRij = jdbcTemplate.queryForObject(
-                "select datum from gastenboek where naam = 'testnaam2'", Date.class);
-        var huidigeDatum = LocalDate.now();
-        assertThat(datumRij).hasDayOfMonth(huidigeDatum.getDayOfMonth());
-        assertThat(datumRij).hasMonth(huidigeDatum.getMonthValue());
-        assertThat(datumRij).hasYear(huidigeDatum.getYear());
+
     }
 
+    @Test
+    void delete() {
+        var id = idVanTestBericht1();
+        var id2 = idVanTestBericht2();
+        gastenboekRepository.delete(new Long[] {id, id2});
+        assertThat(countRowsInTableWhere(GASTENBOEK, "id in (" + id + "," + id2 + ")")).isZero();
+    }
 
-    // Voorlopig niet nodig, is voor delete set longs in volgende oef
+    @Test
+    void deleteMetLegeArrayGeeftGeenException() {
+        gastenboekRepository.delete(new Long[]{});
+    }
+
     private long idVanTestBericht1() {
         return jdbcTemplate.queryForObject(
                 "select id from gastenboek where naam = 'testnaam1'", Long.class);

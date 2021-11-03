@@ -4,9 +4,8 @@ import be.vdab.frituurfrida.domain.Adres;
 import be.vdab.frituurfrida.domain.Gemeente;
 import be.vdab.frituurfrida.domain.Snack;
 import be.vdab.frituurfrida.exceptions.SnackNietGevondenException;
-import be.vdab.frituurfrida.forms.FindByBeginNaamForm;
+import be.vdab.frituurfrida.forms.VindBeginSnackForm;
 import be.vdab.frituurfrida.services.SnackService;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -58,7 +57,7 @@ class SnackController {
     @GetMapping("vindbeginsnack/form")
     public ModelAndView findByBeginSnackForm() {
         var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals(DayOfWeek.MONDAY) ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
-        var modelAndView = new ModelAndView("vindbeginsnack").addObject(new FindByBeginNaamForm(" "));
+        var modelAndView = new ModelAndView("vindbeginsnack").addObject(new VindBeginSnackForm(" "));
         modelAndView.addObject( "dagVdWeek", maandagOfAndereDag);
         modelAndView.addObject("locatie", new Adres("Krieltjesweg", 101, new Gemeente("Bruhhe", 4880)));
         return modelAndView;
@@ -66,7 +65,7 @@ class SnackController {
 
     //controller om formulier te verwerken
     @GetMapping("vindbeginsnack")
-    public ModelAndView findByBeginSnack(@Valid FindByBeginNaamForm form, Errors errors) {
+    public ModelAndView findByBeginSnack(@Valid VindBeginSnackForm form, Errors errors) {
         var maandagOfAndereDag = LocalDate.now().getDayOfWeek().equals(DayOfWeek.MONDAY) ? "Vandaag zijn wij gesloten" : "Wij zijn open, u bent welkom";
         var modelAndView = new ModelAndView("vindbeginsnack");
         modelAndView.addObject( "dagVdWeek", maandagOfAndereDag);

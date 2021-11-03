@@ -9,4 +9,5 @@ import java.util.List;
 public interface GastenboekService {
     void create(BerichtGastenboek berichtGastenboek);
     List<BerichtGastenboek> findAll();
+    void delete(Long[] ids);
 }

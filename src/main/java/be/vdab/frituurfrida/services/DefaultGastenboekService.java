@@ -22,7 +22,13 @@ class DefaultGastenboekService implements  GastenboekService{
     }
 
     @Override
+    @Transactional
     public List<BerichtGastenboek> findAll() {
         return gastenboekRepository.findAll();
+    }
+
+    @Override
+    public void delete(Long[] ids) {
+        gastenboekRepository.delete(ids);
     }
 }

@@ -8,9 +8,9 @@
     <h1 class="h1gastenboek">Gastenboek</h1>
     <br>
     <!--Als toevoegenBerichtForm niet aanwezig is .. -->
-    <a th:if="not${ToevoegenBerichtForm}" th:href="@{/gastenboek/toevoegen/form}">Toevoegen</a>
+    <a th:if="not${gastenboekIngaveForm}" th:href="@{/gastenboek/toevoegen/form}">Toevoegen</a>
     <!--Als toevoegenBerichtForm wel aanwezig is .. -->
-    <form th:if="${ToevoegenBerichtForm}" method="post" th:object="${ToevoegenBerichtForm}" th:action="@{/gastenboek/toevoegen}">
+    <form th:if="${gastenboekIngaveForm}" method="post" th:object="${gastenboekIngaveForm}" th:action="@{/gastenboek/toevoegen}">
         <label>Naam:<input th:field="*{naam}" type="text" required></label>
         <label>Bericht:<input th:field="*{bericht}" type="text" required></label>
         <input type="hidden" name="id" value="0">
@@ -19,11 +19,16 @@
     </form>
     <ul>
         <li th:each="bericht:${gastenboek}" th:object="${bericht}">
-            <ul>
-                <li class="horizontal" th:text="*{datum}"></li>
-                <li class="horizontal" th:text="*{naam}"></li>
-                <li class="horizontal" id="message" th:text="*{bericht}"></li>
-            </ul>
+            <form th:if="not ${gastenboek.isEmpty()}" th:action="@{/gastenboek/verwijderen}" method="post">
+                <ul>
+                    <li class="horizontal" th:text="*{datum}"></li>
+                    <li class="horizontal" th:text="*{naam}"></li>
+                    <li class="horizontal" id="message" th:text="*{bericht}"></li>
+                    <input type="checkbox" class="horizontal" name="id" th:value="*{id}">
+                </ul>
+                <button>Verwijderen</button>
+            </form>
+
         </li>
     </ul>
 </div>

@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface GastenboekRepository {
     List<BerichtGastenboek> findAll();
-    void create(BerichtGastenboek berichtGastenboek);
-
+    long create(BerichtGastenboek berichtGastenboek);
+    void delete(Long[] ids);
 }
